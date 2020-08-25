@@ -5,7 +5,7 @@ describe 'shelters show page shows shelter with that id', type: :feature do
         shelter1 = Shelter.create!(name: 'First Shelter', address: '1st St.', city: 'Bakersfield', state: 'CA', zip: 93303)
 
         visit "/shelters/#{shelter1.id}"
-        
+
 
         expect(page).to have_content(shelter1.name)
         expect(page).to have_content(shelter1.address)
@@ -25,4 +25,31 @@ describe 'shelters show page shows shelter with that id', type: :feature do
 
       expect(current_path).to eq("/shelters/#{shelter1.id}/pets")
     end
+
+    it "it displays all the reviews" do
+      shelter1 = Shelter.create!(name: 'Dog Shelter', address: '1st St.', city: 'Bakersfield', state: 'CA', zip: 93303)
+      review1 = Review.create!(title: "Best Shelter!", rating: 5, content: "Very nice people and adorable pets.", picture:"", shelter: shelter1)
+      review2 = Review.create!(title: "Best Shelter!", rating: 5, content: "Very nice people and adorable pets.", picture:"https://storage.googleapis.com/wordpress-www-vendasta/Top-14-Review-Sites-fb.jpg", shelter: shelter1)
+
+      visit "/shelters/#{shelter1.id}"
+
+      expect(page).to have_content(review1.title)
+      expect(page).to have_content(review1.rating)
+      expect(page).to have_content(review1.content)
+      expect(page).to_not have_content(review1.picture)
+
+      expect(page).to have_content(review2.title)
+      expect(page).to have_content(review2.rating)
+      expect(page).to have_content(review2.content)
+      expect(page).to have_content(review2.picture)
+    end
+
 end
+# As a visitor,
+# When I visit a shelter's show page,
+# I see a list of reviews for that shelter
+# Each review will have:
+# - title
+# - rating
+# - content
+# - an optional picture

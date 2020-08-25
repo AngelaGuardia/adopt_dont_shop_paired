@@ -12,3 +12,10 @@
   <%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit", class: "btn btn-primary" %>
   <%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete, class: "btn btn-danger" %>
 </div>
+
+<ul class="list-group">
+  <li class="list-group-item"> <%= @shelter.reviews.title %></li>
+  <li class="list-group-item">Rating: <%= @shelter.reviews.rating %></li>
+  <li class="list-group-item"><%= @shelter.reviews.content %></li>
+  <li class="list-group-item"><%= @shelter.reviews.picture %></li>
+</ul></br>
