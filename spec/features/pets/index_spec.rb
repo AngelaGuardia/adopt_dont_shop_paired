@@ -10,7 +10,7 @@ describe 'pets index page', type: :feature do
 
     visit '/pets'
 
-    save_and_open_page
+    
 
     # expect(page).to have_content(pet1.image)
     expect(page).to have_content(pet1.name)

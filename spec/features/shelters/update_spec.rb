@@ -41,7 +41,7 @@ describe 'As a user', type: :feature do
 
     click_on 'Update Shelter'
 
-    save_and_open_page
+    
 
     expect(page).to have_content(new_name)
     expect(page).to have_content(new_address)

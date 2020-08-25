@@ -5,7 +5,7 @@ describe 'shelters show page shows shelter with that id', type: :feature do
         shelter1 = Shelter.create!(name: 'First Shelter', address: '1st St.', city: 'Bakersfield', state: 'CA', zip: 93303)
 
         visit "/shelters/#{shelter1.id}"
-        save_and_open_page
+        
 
         expect(page).to have_content(shelter1.name)
         expect(page).to have_content(shelter1.address)

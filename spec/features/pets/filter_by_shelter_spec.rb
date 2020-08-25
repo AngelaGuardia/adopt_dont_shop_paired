@@ -12,7 +12,6 @@ describe 'the filter by shelter page' do
 
     visit "/shelters/#{shelter1.id}/pets"
 
-    save_and_open_page
 
     # expect(page).to have_content(pet1.image)
     expect(page).to have_content(pet1.name)
