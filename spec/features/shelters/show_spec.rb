@@ -31,7 +31,6 @@ describe 'shelters show page shows shelter with that id', type: :feature do
     review2 = Review.create!(title: "Best Shelter!", rating: 5, content: "Very nice people and adorable pets.", picture:"https://storage.googleapis.com/wordpress-www-vendasta/Top-14-Review-Sites-fb.jpg", shelter: @shelter1)
 
     visit "/shelters/#{@shelter1.id}"
-    save_and_open_page
 
     expect(page).to have_content(review1.title)
     expect(page).to have_content(review1.rating)
