@@ -1,0 +1,24 @@
+<h2 class="card-title">Update Review</h2>
+
+<%= form_tag "/reviews/#{@review.id}", method: :patch, class: "form-group" do %>
+  <%= label_tag "Title:" %><br/>
+  <%= text_field_tag :title, @review.title, class: "form-control" %><br/>
+
+  <%= label_tag "Rating:" %><br/>
+  <% 5.times do |i| %>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="rating" id=<%="inlineRadio#{i+1}"%>  value=<%=i+1%> <%= "checked" if i+1 == @review.rating %>>
+      <label class="form-check-label" for="inlineRadio1"><%= i+1 %></label>
+    </div>
+  <% end %></br>
+
+  <%= label_tag "Content:" %><br/>
+  <%= text_field_tag :content, @review.content, class: "form-control" %><br/>
+
+  <%= label_tag "Picture" %><br/>
+  <%= text_field_tag :picture, @review.picture, class: "form-control" %><br/>
+
+  <div class="button">
+    <%= submit_tag 'Update Review', class: "btn btn-primary" %>
+  </div>
+<% end %>
