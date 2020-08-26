@@ -15,10 +15,14 @@
 </div>
 
 <% @shelter.reviews.each do |review| %>
-<ul class="list-group">
-  <li class="list-group-item"> <%= review.title %></li>
-  <li class="list-group-item">Rating: <%= review.rating %></li>
-  <li class="list-group-item"><%= review.content %></li>
-  <li class="list-group-item"><%= image_tag review.picture unless review.picture.nil? %></li>
-</ul></br>
+  <ul class="list-group">
+    <li class="list-group-item"> <%= review.title %></li>
+    <li class="list-group-item">Rating: <%= review.rating %></li>
+    <li class="list-group-item"><%= review.content %></li>
+    <li class="list-group-item"><%= image_tag review.picture unless review.picture.nil? %></li>
+
+    <div class="button">
+      <%= link_to 'Edit Review', "/reviews/#{review.id}/edit", class: "btn btn-primary" %>
+    </div>
+  </ul></br>
 <% end %>
