@@ -26,7 +26,7 @@ describe 'the new page' do
 
     expect(current_path).to eq("/shelters/#{shelter.id}/pets")
 
-    save_and_open_page
+    
 
     # expect(page).to have_content(image)
     expect(page).to have_content(name)

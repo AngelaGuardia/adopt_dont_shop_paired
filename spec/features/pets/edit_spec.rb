@@ -18,7 +18,7 @@ describe 'Pet edit page' do
     click_on 'Update Pet'
 
     expect(current_path).to eq("/pets/#{pet.id}")
-    save_and_open_page
+    
 
     expect(page).to have_content(new_age)
   end

@@ -11,4 +11,18 @@
   <%= link_to 'All Our Pets', "/shelters/#{@shelter.id}/pets", class: "btn btn-success" %>
   <%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit", class: "btn btn-primary" %>
   <%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete, class: "btn btn-danger" %>
+  <%= link_to 'Add a Review', "/shelters/#{@shelter.id}/reviews/new", class: "btn btn-info" %>
 </div>
+
+<% @shelter.reviews.each do |review| %>
+  <ul class="list-group">
+    <li class="list-group-item"> <%= review.title %></li>
+    <li class="list-group-item">Rating: <%= review.rating %></li>
+    <li class="list-group-item"><%= review.content %></li>
+    <li class="list-group-item"><%= image_tag review.picture unless review.picture.nil? %></li>
+
+    <div class="button">
+      <%= link_to 'Edit Review', "/reviews/#{review.id}/edit", class: "btn btn-primary" %>
+    </div>
+  </ul></br>
+<% end %>
