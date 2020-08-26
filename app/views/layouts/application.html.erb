@@ -20,6 +20,13 @@
         <button class="btn btn-outline-secondary" type="button"> <%= link_to "Pets", "/pets" %> </button>
       </form>
     </nav>
+
+    <% flash.each do |type, message| %>
+      <div class="alert alert-danger" role="alert">
+        <p><%= message %></p>
+      </div>
+    <% end %>
+
     <% if (action_name == "new" || action_name == "edit") %>
       <div class="card">
         <div class="card-body">
