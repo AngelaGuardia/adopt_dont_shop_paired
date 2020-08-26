@@ -20,7 +20,7 @@
         <button class="btn btn-outline-secondary" type="button"> <%= link_to "Pets", "/pets" %> </button>
       </form>
     </nav>
-    <% if (controller_name == "shelters" || controller_name == "pets") && (action_name == "new" || action_name == "edit") %>
+    <% if (action_name == "new" || action_name == "edit") %>
       <div class="card">
         <div class="card-body">
           <%= yield %>
