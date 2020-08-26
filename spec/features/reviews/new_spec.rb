@@ -31,4 +31,14 @@ describe 'review new page' do
     expect(page).to have_content(content)
     expect(page.find('img')['src']).to have_content(picture)
   end
+
+  it 'can not create a Review without required attributes' do
+    visit "/shelters/#{@shelter.id}/reviews/new"
+
+    click_on "Post Review"
+
+    expect(page).to have_content("Review not created: Required information missing.")
+
+    expect(current_path).to eq("/shelters/#{@shelter.id}/reviews/new")
+  end
 end
