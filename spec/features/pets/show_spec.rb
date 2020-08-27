@@ -26,8 +26,6 @@ describe 'the pet show page' do
     expect(current_path).to eq("/shelters/#{@shelter.id}")
   end
 
-<<<<<<< HEAD
-=======
   it "shows a button to favorite a pet. When I click that button, it takes me back to the pet's show page and there's a flash message indicating that the pet has been added to my favorites list. The favorite indicator in the nav bar has incremented by one." do
 
     visit "/pets/#{@pet.id}"
@@ -38,5 +36,4 @@ describe 'the pet show page' do
     expect(page).to have_content("#{@pet.name} has been added to your favorites!")
     expect(page).to have_content("My Favorites: 1")
   end
->>>>>>> 56df5284349e0556982da7531d9bbec06410d217
 end
