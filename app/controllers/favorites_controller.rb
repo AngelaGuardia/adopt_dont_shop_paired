@@ -5,6 +5,8 @@ class FavoritesController < ApplicationController
     session[:favorites] ||= []
     session[:favorites] << params[:pet_id].to_s
     flash[:success] = "#{@pet.name} has been added to your favorites!"
+    session[:favorites] ||= []
+    session[:favorites] << @pet
     redirect_to "/pets/#{params[:pet_id]}"
   end
 end
