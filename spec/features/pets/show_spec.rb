@@ -28,11 +28,11 @@ describe 'the pet show page' do
   it "shows a button to favorite a pet. When I click that button, it takes me back to the pet's show page and there's a flash message indicating that the pet has been added to my favorites list. The favorite indicator in the nav bar has incremented by one." do
 
     visit "/pets/#{@pet.id}"
+
     click_link "Favorite Me!"
-    save_and_open_page
+
     expect(current_path).to eq("/pets/#{@pet.id}")
     expect(page).to have_content("#{@pet.name} has been added to your favorites!")
     expect(page).to have_content("My Favorites: 1")
-
   end
 end
