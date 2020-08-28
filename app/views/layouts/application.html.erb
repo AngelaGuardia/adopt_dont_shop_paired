@@ -20,11 +20,11 @@
         <button class="btn btn-outline-secondary" type="button"> <%= link_to "Pets", "/pets" %> </button>
         <% if session[:favorites] != nil %>
           <button class="btn btn-danger" type="button">
-          <%= "My Favorites: #{session[:favorites].count}" %>
+          <%= link_to "My Favorites: #{session[:favorites].count}", "/favorites" %>
            </button>
            <% else %>
            <button class="btn btn-danger" type="button">
-           <%= "My Favorites: 0" %>
+           <%= link_to "My Favorites: 0", "/favorites" %>
             </button>
          <% end %>
       </form>
