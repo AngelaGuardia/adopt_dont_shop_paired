@@ -1,5 +1,9 @@
 class FavoritesController < ApplicationController
 
+  def index
+    @pets = Pet.all
+  end
+
   def new
     @pet = Pet.find(params[:pet_id])
     session[:favorites] ||= []
