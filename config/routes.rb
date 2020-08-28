@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   patch '/reviews/:review_id', to: 'reviews#update'
 
   get 'pets/:pet_id/favorites', to: 'favorites#new'
+  get '/favorites', to: 'favorites#index'
 end
