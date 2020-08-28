@@ -12,7 +12,7 @@ describe 'Favorite Index Page' do
     visit "/pets/#{@pet.id}"
     click_link "Favorite Me!"
 
-    click_link "Favorites: 1"
+    click_on "Favorites: 1"
 
     expect(current_path).to eq("/favorites")
     expect(page).to have_link(@pet.name)
