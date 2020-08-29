@@ -10,9 +10,9 @@
               <li class="list-group-item"><%= pet.age %> years old</li>
               <li class="list-group-item"><%= pet.sex %></li>
               <li class="list-group-item"><%= link_to pet.shelter.name, "/shelters/#{pet.shelter.id}" %></li>
-          </ul>
+          </ul><br/>
           <div class="button">
-            <%= link_to 'Update', "/pets/#{pet.id}/edit", class: "btn btn-outline-primary", id: "#{pet.id}" %>
+            <%= link_to 'Update', "/pets/#{pet.id}/edit", class: "btn btn-outline-secondary", id: "#{pet.id}" %>
             <%= link_to 'Delete', "/pets/#{pet.id}", method: :delete, class: "btn btn-outline-danger" %>
           </div>
         </div>

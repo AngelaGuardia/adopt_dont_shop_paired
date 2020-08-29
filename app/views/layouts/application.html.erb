@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<head>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>AdoptDontShop</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <title>AdoptDontShop</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+</head>
 
-  <body>
-    <nav class="navbar sticky-top navbar-light bg-light">
-      <form class="form-inline">
-        <button class="btn btn-outline-secondary" type="button"> <%= link_to "Shelters", "/shelters" %> </button>
-        <button class="btn btn-outline-secondary" type="button"> <%= link_to "Pets", "/pets" %> </button>
-      </form>
-    </nav>
-
-    <% flash.each do |type, message| %>
-      <div class="alert alert-danger" role="alert">
-        <p><%= message %></p>
-      </div>
-    <% end %>
-
-    <% if (action_name == "new" || action_name == "edit") %>
-      <div class="card">
-        <div class="card-body">
-          <%= yield %>
-        </div>
-      </div>
+<body>
+  <nav class="navbar sticky-top navbar-light bg-light">
+    <%= button_to "Shelters", "/shelters", class: "btn btn-outline-secondary" %>
+    <%= button_to "Pets", "/pets", class: "btn btn-outline-secondary", method: :get %>
+    <% if session[:favorites] != nil %>
+      <%= button_to "My Favorites: #{session[:favorites].count}", "/favorites", class: "btn btn-info", method: :get %>
     <% else %>
-      <%= yield %>
+      <%= button_to "My Favorites: 0", "/favorites", class: "btn btn-info", method: :get %>
     <% end %>
-  </body>
+  </nav>
+
+  <% flash.each do |type, message| %>
+    <div class="alert alert-danger" role="alert">
+      <%= message %>
+    </div>
+  <% end %>
+
+  <% if (action_name == "new" || action_name == "edit") %>
+    <div class="card">
+      <div class="card-body">
+        <%= yield %>
+      </div>
+    </div>
+  <% else %>
+    <%= yield %>
+  <% end %>
+</body>
 </html>
