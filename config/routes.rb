@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   get '/reviews/:review_id/edit', to: 'reviews#edit'
   patch '/reviews/:review_id', to: 'reviews#update'
 
-  get 'pets/:pet_id/favorites', to: 'favorites#new'
   get '/favorites', to: 'favorites#index'
+  patch 'pets/:pet_id/favorites', to: 'favorites#update'
 end
