@@ -18,9 +18,9 @@
     <%= button_to "Shelters", "/shelters", class: "btn btn-outline-secondary" %>
     <%= button_to "Pets", "/pets", class: "btn btn-outline-secondary", method: :get %>
     <% if session[:favorites] != nil %>
-      <%= button_to "My Favorites: #{session[:favorites].count}", "/favorites", class: "btn btn-danger", method: :get %>
+      <%= button_to "My Favorites: #{session[:favorites].count}", "/favorites", class: "btn btn-info", method: :get %>
     <% else %>
-      <%= button_to "My Favorites: 0", "/favorites", class: "btn btn-danger", method: :get %>
+      <%= button_to "My Favorites: 0", "/favorites", class: "btn btn-info", method: :get %>
     <% end %>
   </nav>
 
