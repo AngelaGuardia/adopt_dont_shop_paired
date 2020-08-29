@@ -16,7 +16,13 @@ describe 'Favorite Index Page' do
 
     expect(current_path).to eq("/favorites")
     expect(page).to have_link(@pet.name)
-    # expect(page).to have_content(@pet.image)
   end
 
+  it 'can show a flash message if there are no favorites' do
+    visit "/"
+    click_on "Favorites: 0"
+
+    expect(current_path).to eq("/")
+    expect(page).to have_content("Uh-oh! You haven't favorited any pets yet...")
+  end
 end
