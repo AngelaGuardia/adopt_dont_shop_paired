@@ -34,6 +34,6 @@ describe 'the pet show page' do
 
     expect(current_path).to eq("/pets/#{@pet.id}")
     expect(page).to have_content("#{@pet.name} has been added to your favorites!")
-    expect(page).to have_content("My Favorites: 1")
+    expect(page).to have_button("My Favorites: 1")
   end
 end
