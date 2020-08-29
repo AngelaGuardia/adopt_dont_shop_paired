@@ -25,17 +25,17 @@
   </nav>
 
   <% flash.each do |type, message| %>
-  <div class="alert alert-danger" role="alert">
-    <%= message %>
-  </div>
+    <div class="alert alert-danger" role="alert">
+      <%= message %>
+    </div>
   <% end %>
 
   <% if (action_name == "new" || action_name == "edit") %>
-  <div class="card">
-    <div class="card-body">
-      <%= yield %>
+    <div class="card">
+      <div class="card-body">
+        <%= yield %>
+      </div>
     </div>
-  </div>
   <% else %>
     <%= yield %>
   <% end %>
