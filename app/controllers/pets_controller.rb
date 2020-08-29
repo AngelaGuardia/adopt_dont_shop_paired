@@ -10,12 +10,9 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:pet_id])
-    if session[:favorites] != nil
-      @favorites = session[:favorites]
-    else
-      @favorites = []
+    if session[:favorites]
+      @is_favorite = session[:favorites].include? params[:pet_id]
     end
-    # require "pry"; binding.pry
   end
 
   def new
