@@ -27,6 +27,7 @@ class FavoritesController < ApplicationController
     else
       session[:favorites] = nil
       favorite.remove_all
+      redirect_to '/favorites'
     end
   end
 end
