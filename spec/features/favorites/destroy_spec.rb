@@ -41,4 +41,20 @@ describe 'Remove a Favorite' do
 
     expect(page).not_to have_css("#pet-#{@pet1.id}")
   end
+
+  it 'can remove all favorites with one link' do
+    visit "/pets/#{@pet1.id}"
+    click_link "Favorite Me!"
+
+    visit "/pets/#{@pet2.id}"
+    click_link "Favorite Me!"
+
+    visit '/favorites'
+
+    click_on 'Remove all'
+
+    expect(current_path).to eq('/favorites')
+    expect(page).not_to have_css("#pet-#{@pet1.id}")
+    expect(page).not_to have_css("#pet-#{@pet2.id}")  
+  end
 end
