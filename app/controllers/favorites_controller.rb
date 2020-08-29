@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
       @favorite_pets = favorite.pets
     else
       flash[:notice] = "Uh-oh! You haven't favorited any pets yet..."
-      redirect_back fallback_location: "/"
     end
   end
 
