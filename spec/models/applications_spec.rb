@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Applications do
+describe Application do
 
   describe "validations" do
     it { should validate_presence_of :name }
