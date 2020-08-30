@@ -1,12 +1,11 @@
 class ApplicationsController < ApplicationController
-
   def new
     favorite = Favorite.new(session[:favorites])
     @favorite_pets = favorite.pets
   end
 
   def create
-    application = Applications.new(application_params)
+    application = Application.new(application_params)
     pet_ids = params[:favorite][:pet_id].reject!(&:empty?)
     pets = pet_ids.map {|id| Pet.find(id)}
     if application.save
@@ -24,5 +23,4 @@ class ApplicationsController < ApplicationController
   def application_params
     params.permit(:name, :address, :city, :state, :zip, :phone_number, :description)
   end
-
 end
