@@ -1,5 +1,4 @@
 class Favorite
-
   def initialize(pet_ids)
     @pet_ids = pet_ids
   end
