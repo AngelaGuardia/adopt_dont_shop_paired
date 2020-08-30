@@ -6,14 +6,17 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = Applications.new(application_params)
-    @pet_ids = params[:favorite][:pet_id].reject!(&:empty?)
-    @pets = @pet_ids.map {|id| Pet.find(id)}
-
-    @application.save
-    @pets.each {|pet| ApplicationsPet.create(applications: @application, pet: @pet)}
-    flash[:notice] = "Submission complete. You're one step closer to becoming a pet owner!"
-    redirect_to '/favorites'
+    application = Applications.new(application_params)
+    pet_ids = params[:favorite][:pet_id].reject!(&:empty?)
+    pets = pet_ids.map {|id| Pet.find(id)}
+    if application.save
+      pets.each {|pet| ApplicationsPet.create(applications: application, pet: pet)}
+      flash[:success] = "Submission complete. You're one step closer to becoming a pet owner!"
+      redirect_to "/favorites"
+    else
+      flash[:failure] = "Oh no! Please fill out missing fields before hitting the submit button."
+      redirect_to "/applications/new"
+    end
   end
 
   private
