@@ -31,16 +31,16 @@ describe 'New Pet Adoption Application' do
     city = "Marietta"
     state = "GA"
     zip = 30008
-    phone_number = 773-555-1224
+    phone_number = 7735551224
     description = "I'm a very responsible person and I will love them forever!"
 
-    fill_in "Name", with: name
-    fill_in "Address", with: address
-    fill_in "City", with: city
-    fill_in "State", with: state
-    fill_in "Zip", with: zip
-    fill_in "Phone Number", with: phone_number
-    fill_in "Description", with: description
+    fill_in :name, with: name
+    fill_in :address, with: address
+    fill_in :city, with: city
+    fill_in :state, with: state
+    fill_in :zip, with: zip
+    fill_in :phone_number, with: phone_number
+    fill_in :description, with: description
 
     click_on 'Submit My Application'
 
