@@ -6,10 +6,8 @@ class ApplicationsController < ApplicationController
 
   def create
     application = Application.new(application_params)
-    pet_ids = params[:favorite][:pet_id].reject!(&:empty?)
-    pets = pet_ids.map {|id| Pet.find(id)}
     if application.save
-      pets.each {|pet| ApplicationsPet.create(applications: application, pet: pet)}
+      application.add_pets(favorite_params)
       flash[:success] = "Submission complete. You're one step closer to becoming a pet owner!"
       redirect_to "/favorites"
     else
@@ -21,6 +19,10 @@ class ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.permit(:name, :address, :city, :state, :zip, :phone_number, :description)
+    params.permit(:name, :address, :city, :state, :zip, :phone_number, :description, :favorite)
+  end
+
+  def favorite_params
+    params[:favorite].permit(:pet_id => [])[:pet_id]
   end
 end
