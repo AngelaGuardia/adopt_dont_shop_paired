@@ -10,6 +10,9 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:pet_id])
+    if session[:favorites]
+      @is_favorite = session[:favorites].include? params[:pet_id]
+    end
   end
 
   def new
