@@ -35,4 +35,43 @@ describe 'Favorite Index Page' do
     expect(page).to have_button("Adopt a Pet Today!")
   end
 
+  it "displays a list of pets that have an application on them " do
+    visit "/pets/#{@pet.id}"
+    click_link "Favorite Me!"
+
+    click_on "Favorites: 1"
+    expect(current_path).to eq("/favorites")
+
+    click_on "Adopt a Pet Today!"
+    expect(current_path).to eq("/applications/new")
+
+    expect(page).to have_content(@pet.name)
+
+    find("#favorite_pet_id_#{@pet.id}").click
+
+    name = "Elah Pillado"
+    address = "123 SW Gate"
+    city = "Marietta"
+    state = "GA"
+    zip = 30008
+    phone_number = "7735551224"
+    description = "I'm a very responsible person and I will love them forever!"
+    fill_in :name, with: name
+    fill_in :address, with: address
+    fill_in :city, with: city
+    fill_in :state, with: state
+    fill_in :zip, with: zip
+    fill_in :phone_number, with: phone_number
+    fill_in :description, with: description
+    click_on 'Submit My Application'
+
+    expect(current_path).to eq("/favorites")
+
+    within(".list-group") do
+      expect(page).to have_content("Pets you have applied for adoption:")
+      expect(page).to have_link(@pet.name)
+    end
+    save_and_open_page
+  end
+
 end

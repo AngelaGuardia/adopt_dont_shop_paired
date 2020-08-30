@@ -17,8 +17,18 @@
       </div>
     </div>
     <% end %>
-  </div>
+  </div> <br>
+
   <div class="button">
     <%= button_to 'Remove all', "/favorites", method: :delete, class: "btn btn-danger" %>
-  </div>
+  </div> <br>
+
+  <ul class="list-group">
+    <h4> Pets you have applied for adoption: </h4>
+    <% @favorite_pets.each do |pet| %>
+      <li class="list-group-item pets-with-applications-item">
+        <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+      </li>
+    <% end %>
+  </ul></br>
 <% end %>
