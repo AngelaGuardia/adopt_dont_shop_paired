@@ -24,14 +24,16 @@ describe 'New Pet Adoption Application' do
 
     expect(page).to have_content(@pet1.name)
     expect(page).to have_content(@pet2.name)
-    # I wanted to use something like "check 'Lucas' but don't know if that's allowed with Bootstrap"
+
+    find("#favorite_pet_id_#{@pet1.id}").click
+    find("#favorite_pet_id_#{@pet2.id}").click
 
     name = "Elah Pillado"
     address = "123 SW Gate"
     city = "Marietta"
     state = "GA"
     zip = 30008
-    phone_number = 7735551224
+    phone_number = "7735551224"
     description = "I'm a very responsible person and I will love them forever!"
 
     fill_in :name, with: name
