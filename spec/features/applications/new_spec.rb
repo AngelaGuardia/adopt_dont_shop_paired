@@ -48,4 +48,35 @@ describe 'New Pet Adoption Application' do
     expect(current_path).to eq("/favorites")
   end
 
+  it "cannot submit an application successfully if it's incomplete." do
+    visit "/pets/#{@pet1.id}"
+    click_link "Favorite Me!"
+
+    visit "/pets/#{@pet2.id}"
+    click_link "Favorite Me!"
+
+    click_on "Favorites: 2"
+    expect(current_path).to eq("/favorites")
+
+    click_on "Adopt a Pet Today!"
+    expect(current_path).to eq("/applications/new")
+
+    expect(page).to have_content(@pet1.name)
+
+    name = "Elah Pillado"
+
+    fill_in :name, with: name
+    fill_in :address, with: ""
+    fill_in :city, with: ""
+    fill_in :state, with: ""
+    fill_in :zip, with: ""
+    fill_in :phone_number, with: ""
+    fill_in :description, with: ""
+
+    click_on 'Submit My Application'
+
+    expect(page).to have_content("Oh no! Please fill out missing fields before hitting the submit button.")
+    expect(current_path).to eq("/applications/new")
+  end
+
 end
