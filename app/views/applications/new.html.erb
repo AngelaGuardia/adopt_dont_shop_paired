@@ -1,9 +1,12 @@
 <h1 class="card-title"> Pet Adoption Application </h1>
 
 <%= form_tag '/applications', method: :post, class: "form-group" do %>
-  <h3> Please choose what pet(s) you would like to adopt:</h3>
+  <p> Please choose what pet(s) you would like to adopt:</p>
   <div class="checkbox">
-  <%= collection_check_boxes(:favorite, :pet_id, @favorite_pets, :id, :name) %>
+    <%= collection_check_boxes(:favorite, :pet_id, @favorite_pets, :id, :name) do |b| %>
+        <%= b.check_box %>
+        <%= b.label %><br/>
+    <% end %>
   </div>
   <%= label_tag :name %><br/>
   <%= text_field_tag :name, nil, class: "form-control" %><br/>
