@@ -1,5 +1,9 @@
 <h2>My Favorite Pets</h2>
 
+<div class="button">
+  <%= button_to 'Adopt a Pet Today!', "/applications/new", method: :get, class: "btn btn-success" %>
+</div>
+
 <% if session[:favorites] %>
   <div class="card-columns">
     <% @favorite_pets.each do |pet| %>
@@ -16,6 +20,5 @@
   </div>
   <div class="button">
     <%= button_to 'Remove all', "/favorites", method: :delete, class: "btn btn-danger" %>
-    <%= button_to 'Adopt a Pet Today!', "/applications/new", method: :get, class: "btn btn-danger" %>
   </div>
 <% end %>
