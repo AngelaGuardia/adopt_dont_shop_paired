@@ -2,7 +2,7 @@ class Applications < ApplicationRecord
 
   belongs_to :shelter
   has_many :pet_applications
-  has_many :pets, through: :applications
+  has_many :pets, through: :pet_applications
 
   validates_presence_of :name
   validates_presence_of :address

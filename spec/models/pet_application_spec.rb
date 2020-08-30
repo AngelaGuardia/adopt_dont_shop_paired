@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PetApplications do
+describe PetApplication do
 
   describe "relationships" do
     it { should belong_to :pet }
