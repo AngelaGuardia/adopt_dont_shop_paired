@@ -71,7 +71,6 @@ describe 'Favorite Index Page' do
       expect(page).to have_content("Pets you have applied for adoption:")
       expect(page).to have_link(@pet.name)
     end
-    save_and_open_page
   end
 
 end
