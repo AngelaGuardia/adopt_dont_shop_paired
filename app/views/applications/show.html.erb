@@ -4,7 +4,7 @@
   <div class="card-body">
     <ul class="list-group">
       <p> Adoption application for the following pets: </p>
-      <% @favorite_pets.each do |pet| %>
+      <% @application.pets.each do |pet| %>
         <li class="list-group-item pets-with-applications-item">
           <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
         </li>

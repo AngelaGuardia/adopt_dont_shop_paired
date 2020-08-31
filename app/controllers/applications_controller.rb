@@ -21,9 +21,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    favorite = Favorite.new(session[:favorites])
-    @favorite_pets = favorite.pets
-    @application = Application.find(params[:id])
+    @application = Application.find(id_params[:id])
   end
 
   private
@@ -38,5 +36,9 @@ class ApplicationsController < ApplicationController
 
   def pet_params
     params.permit(:pet_id)
+  end
+
+  def id_params
+    params.permit(:id)
   end
 end
