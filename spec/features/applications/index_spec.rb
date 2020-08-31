@@ -31,12 +31,14 @@ describe 'Application Index Page' do
   end
 
   it "has links to every applicant's application" do
-    visit "/pets/#{@bruno.id}/applications/" do
-      click_on @application1.name
-      expect(current_path).to eq("/applications/#{@application1.id}")
+    visit "/pets/#{@bruno.id}/applications/"
+    click_on @application1.name
 
-      click_on @application2.name
-      expect(current_path).to eq("/applications/#{@application2.id}")
-    end
+    expect(current_path).to eq("/applications/#{@application1.id}")
+
+    visit "/pets/#{@bruno.id}/applications/"
+
+    click_on @application2.name
+    expect(current_path).to eq("/applications/#{@application2.id}")
   end
 end
