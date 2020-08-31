@@ -1,4 +1,8 @@
 class ApplicationsController < ApplicationController
+  def index
+    @pet = Pet.find(pet_params[:pet_id])
+  end
+
   def new
     favorite = Favorite.new(session[:favorites])
     @favorite_pets = favorite.pets
@@ -30,5 +34,9 @@ class ApplicationsController < ApplicationController
 
   def favorite_params
     params[:favorite].permit(:pet_id => [])[:pet_id]
+  end
+
+  def pet_params
+    params.permit(:pet_id)
   end
 end

@@ -11,6 +11,7 @@
     </ul>
   </div>
   <div class="button">
+    <%= link_to 'All Applications', "/pets/#{@pet.id}/applications", class: "btn btn-outline-success" %><br/>
     <% if @is_favorite %>
       <%= link_to 'Remove me from your favorites', "/favorites/#{@pet.id}", method: :delete, class: "btn btn-outline-info" %>
     <% else %>
