@@ -6,6 +6,7 @@ describe 'Application Index Page' do
     @bruno = Pet.create!(image: '01.jpg', name: 'Bruno', age: 6, sex: 'Male', shelter: @shelter1, description: "I'm a good strong boy", adoption_status: 'Adoptable')
     @cleo = Pet.create!(image: '02.jpg', name: 'Cleopatra', age: 1, sex: 'Female', shelter: @shelter1, description: "I'm an Egyptian Empress", adoption_status: 'Adoptable')
     @cody = Pet.create!(image: '03.jpg', name: 'Cody', age: 4, sex: 'Male', shelter: @shelter1, description: "I like cuddles", adoption_status: 'Adoptable')
+    @dolly = Pet.create!(image: '04.jpg', name: 'Dolly', age: 7, sex: 'Female', shelter: @shelter1, description: "I'm a clone", adoption_status: 'Adoptable')
 
     @application1 = Application.create!(name: "Elah Pillado", address: "123 SW Gate", city: "Marietta", state: "GA", zip: 30008, phone_number: "7735551224", description: "I'm a very responsible person and I will love them forever!")
 
@@ -40,5 +41,11 @@ describe 'Application Index Page' do
 
     click_on @application2.name
     expect(current_path).to eq("/applications/#{@application2.id}")
+  end
+
+  it 'shows no application message when pet has no applications' do
+    visit "/pets/#{@dolly.id}/applications/"
+    save_and_open_page
+    expect(page).to have_content("There are no applications for #{@dolly.name} yet!")
   end
 end
