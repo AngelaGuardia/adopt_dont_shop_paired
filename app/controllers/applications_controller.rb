@@ -16,6 +16,12 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def show
+    favorite = Favorite.new(session[:favorites])
+    @favorite_pets = favorite.pets
+    @application = Application.find(params[:id])
+  end
+
   private
 
   def application_params
