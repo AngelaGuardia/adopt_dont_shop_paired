@@ -5,7 +5,7 @@
     <ul class="list-group">
       <% @pet.applications.each do |application| %>
         <li class="list-group-item">
-          <%= link_to "#{application.name}", "/applciations/#{application.id}" %>
+          <%= link_to "#{application.name}", "/applications/#{application.id}" %>
         </li>
       <% end %>
     </ul><br/>
