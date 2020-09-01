@@ -90,10 +90,31 @@ describe 'Application Show Page' do
       expect(page).to have_link("Approve")
     end
   end
-# As a visitor
-# When a pet has more than one application made for them
-# And one application has already been approved for them
-# I can not approve any other applications for that pet but all other applications still remain on file (they can be seen on the pets application index page)
-# (This can be done by either taking away the option to approve the application, or having a flash message pop up saying that no more applications can be approved for this pet at this time)
+
+  it "approved applications can be revoked" do
+    visit "/pets/#{@pet1.id}"
+    click_link "Favorite Me!"
+
+    visit "/applications/#{@application1.id}"
+
+    within("#pet-#{@pet1.id}") do
+      expect(page).to have_link("Approve")
+      click_on "Approve"
+    end
+
+    visit "/applications/#{@application1.id}"
+
+    within("#pet-#{@pet1.id}") do
+      expect(page).to have_link("Unapprove")
+    end
+
+    expect(current_path).to eq("/applications/#{@application1.id}")
+    within("#pet-#{@pet1.id}") do
+      expect(page).to have_link("Approve")
+    end
+
+    visit "/pets/#{@pet1.id}"
+    expect(page).to have_content("Adoptable")
+  end
 
 end
