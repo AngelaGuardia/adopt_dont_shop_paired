@@ -45,7 +45,7 @@ describe 'Application Index Page' do
 
   it 'shows no application message when pet has no applications' do
     visit "/pets/#{@dolly.id}/applications/"
-    save_and_open_page
+    
     expect(page).to have_content("There are no applications for #{@dolly.name} yet!")
   end
 end
