@@ -34,4 +34,27 @@ describe 'Application Show Page' do
     expect(page).to have_content(@application.description)
   end
 
+  it 'displays approval/pending application information' do
+    visit "/pets/#{@pet1.id}"
+    click_link "Favorite Me!"
+
+    visit "/pets/#{@pet2.id}"
+    click_link "Favorite Me!"
+
+    visit "/applications/#{@application.id}"
+
+    within("#pet-#{@pet2.id}") do
+      expect(page).to have_link("Approve")
+    end
+
+    within("#pet-#{@pet1.id}") do
+      expect(page).to have_link("Approve")
+      click_on "Approve"
+    end
+
+    expect(current_path).to eq("/pets/#{@pet1.id}")
+
+    expect(page).to have_content("Pending - on hold for: #{@application.name}")
+  end
+
 end
