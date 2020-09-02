@@ -55,8 +55,6 @@ describe 'shelters show page shows shelter with that id', type: :feature do
 
     visit "/shelters/#{@shelter1.id}"
 
-    save_and_open_page
-
     expect(page).to have_content("Count of Pets: #{@shelter1.pets_count}")
     expect(page).to have_content("Average Review Rating: #{@shelter1.avg_shelter_review}")
     expect(page).to have_content("Applications of File: #{@shelter1.applications_count}")
