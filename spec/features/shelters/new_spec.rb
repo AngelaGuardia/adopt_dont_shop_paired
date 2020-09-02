@@ -17,11 +17,7 @@ describe 'New Shelter', type: :feature do
         fill_in 'State', with: 'CA'
         fill_in 'Zip', with: 93303
 
-        
-
         click_on 'Create Shelter'
-
-        
 
         shelter = Shelter.last
 
