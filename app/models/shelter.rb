@@ -8,8 +8,21 @@ class Shelter < ApplicationRecord
   validates_presence_of :state
   validates_presence_of :zip
 
-  def has_approved_pets?
-    self.pets.any? { |pet| pet.adoption_status != "Adoptable" }
+  def has_all_adoptable_pets?
+    self.pets.all? { |pet| pet.adoption_status == "Adoptable" }
+  end
+
+  def delete_pets
+    self.pets.each do |pet|
+      delete_applications(pet)
+      pet.destroy
+    end
+  end
+
+  def delete_applications(pet)
+    pet.applications.each do |application|
+      application.pets.delete(pet)
+    end 
   end
 
 end

@@ -11,7 +11,7 @@
   <%= link_to 'All Our Pets', "/shelters/#{@shelter.id}/pets", class: "btn btn-success" %>
   <%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit", class: "btn btn-primary" %>
   <%= link_to 'Add a Review', "/shelters/#{@shelter.id}/reviews/new", class: "btn btn-info" %>
-  <% if !@shelter.has_approved_pets? %>
+  <% if @shelter.has_all_adoptable_pets? %>
     <%= button_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete, class: "btn btn-danger" %>
   <% end %>
 </div>
