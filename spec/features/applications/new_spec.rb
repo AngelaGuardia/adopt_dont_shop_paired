@@ -6,6 +6,7 @@ describe 'New Pet Adoption Application' do
     @shelter = Shelter.create!(name: 'Cat Shelter', address: '2nd St.', city: 'Los Angeles', state: 'CA', zip: 93303)
     @pet1 = Pet.create!(image: 'img001.png', name: 'Lukas', age: 10, sex: 'Male', shelter: @shelter, description: "I'm a good boy", adoption_status: 'Adoptable')
     @pet2 = Pet.create!(image: '03.jpg', name: 'Bubba', age: 5, sex: 'Female', shelter: @shelter, description: "I'm the best", adoption_status: 'Adoptable')
+    @pet3 = Pet.create!(image: '06.jpg', name: 'Salazar', age: 4, sex: 'Male', shelter: @shelter, description: "I'm very sssspecial'", adoption_status: 'Adoptable')
   end
 
   it "displays a form where I can apply one or more pets I've favorited. When I submit, I see a flash message indicating my application went through and I'm redirected to the favorites page where the pets I just applied for are not there." do
@@ -81,4 +82,56 @@ describe 'New Pet Adoption Application' do
     expect(current_path).to eq("/applications/new")
   end
 
+  it "displays a list of pets that have an application on them " do
+    visit "/pets/#{@pet1.id}"
+    click_link "Favorite Me!"
+
+    visit "/pets/#{@pet2.id}"
+    click_link "Favorite Me!"
+
+    visit "/pets/#{@pet3.id}"
+    click_link "Favorite Me!"
+
+    click_on "Favorites: 3"
+    expect(current_path).to eq("/favorites")
+
+    click_on "Adopt a Pet Today!"
+    expect(current_path).to eq("/applications/new")
+
+    expect(page).to have_content(@pet1.name)
+
+    find("#favorite_pet_id_#{@pet1.id}").click
+    find("#favorite_pet_id_#{@pet2.id}").click
+
+    name = "Elah Pillado"
+    address = "123 SW Gate"
+    city = "Marietta"
+    state = "GA"
+    zip = 30008
+    phone_number = "7735551224"
+    description = "I'm a very responsible person and I will love them forever!"
+    fill_in :name, with: name
+    fill_in :address, with: address
+    fill_in :city, with: city
+    fill_in :state, with: state
+    fill_in :zip, with: zip
+    fill_in :phone_number, with: phone_number
+    fill_in :description, with: description
+    click_on 'Submit My Application'
+
+    expect(current_path).to eq("/favorites")
+
+    within(".card") do
+      expect(page).to have_link(@pet3.name)
+      expect(page).not_to have_link(@pet1.name)
+      expect(page).not_to have_link(@pet2.name)
+    end
+
+    within(".list-group") do
+      expect(page).to have_content("Pets you have applied for adoption:")
+      expect(page).to have_link(@pet1.name)
+      expect(page).to have_link(@pet2.name)
+      expect(page).not_to have_link(@pet3.name)
+    end
+  end
 end

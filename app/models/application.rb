@@ -11,9 +11,12 @@ class Application < ApplicationRecord
   validates_presence_of :description
 
   def add_pets(pet_ids)
-    pet_ids.reject!(&:empty?)
-    pet_ids.each do |pet_id|
+    clean(pet_ids).each do |pet_id|
       self.pets << Pet.find(pet_id)
     end
+  end
+
+  def clean(pet_ids)
+    pet_ids.reject!(&:empty?)
   end
 end

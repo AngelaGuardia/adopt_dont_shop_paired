@@ -3,8 +3,8 @@ class Favorite
     @pet_ids = pet_ids
   end
 
-  def pets
-    @pet_ids.map { |pet_id| Pet.find(pet_id) }
+  def pets(pet_ids)
+    pet_ids.map { |pet_id| Pet.find(pet_id) }
   end
 
   def remove_pet(pet_id)

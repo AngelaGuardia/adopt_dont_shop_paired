@@ -8,13 +8,14 @@ class ApplicationsController < ApplicationController
 
   def new
     favorite = Favorite.new(session[:favorites])
-    @favorite_pets = favorite.pets
+    @favorite_pets = favorite.pets(session[:favorites])
   end
 
   def create
     application = Application.new(application_params)
     if application.save
       application.add_pets(favorite_params)
+      session[:applied_pets] =  application.clean(favorite_params)
       flash[:success] = "Submission complete. You're one step closer to becoming a pet owner!"
       redirect_to "/favorites"
     else
