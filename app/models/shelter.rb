@@ -7,4 +7,9 @@ class Shelter < ApplicationRecord
   validates_presence_of :city
   validates_presence_of :state
   validates_presence_of :zip
+
+  def has_approved_pets?
+    self.pets.any? { |pet| pet.adoption_status != "Adoptable" }
+  end
+
 end
