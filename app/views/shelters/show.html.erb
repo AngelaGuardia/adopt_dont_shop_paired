@@ -1,5 +1,12 @@
 <h2><%= @shelter.name %></h2>
 
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0"><%= "Count of Pets: #{@shelter.pets_count}" %></span>
+  <span class="navbar-brand mb-0"><%= "Average Review Rating: #{@shelter.avg_shelter_review}" %></span>
+  <span class="navbar-brand mb-0"><%= "Applications of File: #{@shelter.applications_count}" %></span>
+</nav>
+
+
 <ul class="list-group">
   <li class="list-group-item">Address: <%= @shelter.address %></li>
   <li class="list-group-item">City: <%= @shelter.city %></li>

@@ -28,4 +28,18 @@ class Shelter < ApplicationRecord
   def delete_reviews
     self.reviews.each { |review| review.destroy }
   end
+
+  def pets_count
+    self.pets.count
+  end
+
+  def avg_shelter_review
+    Review.average(:rating)
+  end
+
+  def applications_count
+    self.pets.sum do |pet|
+      pet.applications.count
+    end
+  end
 end
