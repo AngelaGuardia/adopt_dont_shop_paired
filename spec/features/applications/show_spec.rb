@@ -106,6 +106,7 @@ describe 'Application Show Page' do
 
     within("#pet-#{@pet1.id}") do
       expect(page).to have_link("Unapprove")
+      click_on "Unapprove"
     end
 
     expect(current_path).to eq("/applications/#{@application1.id}")
