@@ -9,7 +9,6 @@ class PetApplicationsController < ApplicationController
       pet.update(adoption_status: "Adoptable")
       redirect_to "/applications/#{application.id}"
     end
-    # require "pry"; binding.pry
   end
 
   private

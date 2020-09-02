@@ -15,7 +15,7 @@
 
 <body>
   <nav class="navbar sticky-top navbar-light bg-light">
-    <%= button_to "Shelters", "/shelters", class: "btn btn-outline-secondary" %>
+    <%= button_to "Shelters", "/shelters", class: "btn btn-outline-secondary", method: :get %>
     <%= button_to "Pets", "/pets", class: "btn btn-outline-secondary", method: :get %>
     <% if session[:favorites] != nil %>
       <%= button_to "My Favorites: #{session[:favorites].count}", "/favorites", class: "btn btn-info", method: :get %>

@@ -1,5 +1,12 @@
 <h2><%= @shelter.name %></h2>
 
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0"><%= "Count of Pets: #{@shelter.pets_count}" %></span>
+  <span class="navbar-brand mb-0"><%= "Average Review Rating: #{@shelter.avg_shelter_review}" %></span>
+  <span class="navbar-brand mb-0"><%= "Applications of File: #{@shelter.applications_count}" %></span>
+</nav>
+
+
 <ul class="list-group">
   <li class="list-group-item">Address: <%= @shelter.address %></li>
   <li class="list-group-item">City: <%= @shelter.city %></li>
@@ -10,8 +17,10 @@
 <div class="button">
   <%= link_to 'All Our Pets', "/shelters/#{@shelter.id}/pets", class: "btn btn-success" %>
   <%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit", class: "btn btn-primary" %>
-  <%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete, class: "btn btn-danger" %>
   <%= link_to 'Add a Review', "/shelters/#{@shelter.id}/reviews/new", class: "btn btn-info" %>
+  <% if @shelter.has_all_adoptable_pets? %>
+    <%= button_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete, class: "btn btn-danger" %>
+  <% end %>
 </div>
 
 <% @shelter.reviews.each do |review| %>
