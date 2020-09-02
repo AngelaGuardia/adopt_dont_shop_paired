@@ -29,6 +29,7 @@ class SheltersController < ApplicationController
     shelter = Shelter.find(params[:id])
     if shelter.has_all_adoptable_pets?
       shelter.delete_pets
+      shelter.delete_reviews
       shelter.destroy
     end
     redirect_to '/shelters'

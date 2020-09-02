@@ -22,7 +22,10 @@ class Shelter < ApplicationRecord
   def delete_applications(pet)
     pet.applications.each do |application|
       application.pets.delete(pet)
-    end 
+    end
   end
 
+  def delete_reviews
+    self.reviews.each { |review| review.destroy }
+  end
 end
