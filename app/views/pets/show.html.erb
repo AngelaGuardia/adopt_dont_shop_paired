@@ -18,6 +18,8 @@
       <%= link_to 'Favorite Me!', "/pets/#{@pet.id}/favorites", method: :patch, class: "btn btn-info" %>
     <% end %><br/>
     <%= link_to 'Update Pet', "/pets/#{@pet.id}/edit", class: "btn btn-outline-secondary" %><br/>
-    <%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete, class: "btn btn-outline-danger" %>
+    <% if @pet.adoption_status == 'Adoptable' %>
+      <%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete, class: "btn btn-outline-danger" %>
+    <% end %>
   </div>
 </div>
