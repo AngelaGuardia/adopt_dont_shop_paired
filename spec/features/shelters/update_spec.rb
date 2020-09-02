@@ -30,4 +30,32 @@ describe 'As a user', type: :feature do
     expect(page).to have_content(new_state)
     expect(page).to have_content(new_zip)
   end
+
+  it 'I can see a flash message if not all required info given to update a shelter' do
+    shelter = Shelter.create!(name: 'First Shelter', address: '1st St.', city: 'Bakersfield', state: 'CA', zip: 93303)
+
+    visit "/shelters/#{shelter.id}"
+
+    click_on 'Update Shelter'
+
+    expect(current_path).to eq("/shelters/#{shelter.id}/edit")
+
+    new_name = ''
+    new_address = ''
+    new_city = ''
+    new_state = ''
+    new_zip = 99993303
+
+    fill_in 'Name', with: new_name
+    fill_in 'Address', with: new_address
+    fill_in 'City', with: new_city
+    fill_in 'State', with: new_state
+    fill_in 'Zip', with: new_zip
+
+    click_on 'Update Shelter'
+
+    expect(page).to have_content("Oh no! Please fill out missing fields before hitting the submit button.")
+
+    expect(current_path).to eq("/shelters/#{shelter.id}/edit")
+  end
 end
