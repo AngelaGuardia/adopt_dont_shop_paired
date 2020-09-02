@@ -25,4 +25,13 @@ describe 'Favorite Index Page' do
     expect(current_path).to eq("/favorites")
     expect(page).to have_content("Uh-oh! You haven't favorited any pets yet...")
   end
+
+  it "displays a link to adopt a favorited pet" do
+
+    visit "/pets/#{@pet.id}"
+    click_link "Favorite Me!"
+
+    visit "/favorites"
+    expect(page).to have_button("Adopt a Pet Today!")
+  end
 end

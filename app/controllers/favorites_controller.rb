@@ -1,8 +1,12 @@
 class FavoritesController < ApplicationController
   def index
-    if session[:favorites]
+    if session[:favorites] || session[:applied_pets]
       favorite = Favorite.new(session[:favorites])
-      @favorite_pets = favorite.pets
+      if session[:applied_pets]
+        session[:favorites] -= session[:applied_pets]
+        @applied_pets = favorite.pets(session[:applied_pets])
+      end
+      @favorite_pets = favorite.pets(session[:favorites])
     else
       flash[:notice] = "Uh-oh! You haven't favorited any pets yet..."
     end

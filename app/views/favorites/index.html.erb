@@ -1,5 +1,9 @@
 <h2>My Favorite Pets</h2>
 
+<div class="button">
+  <%= button_to 'Adopt a Pet Today!', "/applications/new", method: :get, class: "btn btn-success" %>
+</div>
+
 <% if session[:favorites] %>
   <div class="card-columns">
     <% @favorite_pets.each do |pet| %>
@@ -13,8 +17,20 @@
       </div>
     </div>
     <% end %>
-  </div>
+  </div> <br>
+
   <div class="button">
     <%= button_to 'Remove all', "/favorites", method: :delete, class: "btn btn-danger" %>
-  </div>
+  </div> <br>
+
+  <% if @applied_pets %>
+    <ul class="list-group">
+      <h4> Pets you have applied for adoption: </h4>
+      <% @applied_pets.each do |pet| %>
+        <li class="list-group-item pets-with-applications-item">
+          <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+        </li>
+      <% end %>
+    </ul></br>
+  <% end %>
 <% end %>

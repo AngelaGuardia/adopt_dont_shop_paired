@@ -1,0 +1,30 @@
+<h2> Your Adoption Application </h2>
+
+<div class="card">
+  <div class="card-body">
+    <ul class="list-group">
+      <p> Adoption application for the following pets: </p>
+      <% @application.pets.each do |pet| %>
+        <li class="list-group-item" id=<%="pet-#{pet.id}"%> >
+          <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+          <% if pet.adoption_status == "Adoptable" %>
+            <%= link_to "Approve", "/applications/#{@application.id}/#{pet.id}", method: :patch %>
+          <% else %>
+            <%= link_to "Unapprove", "/applications/#{@application.id}/#{pet.id}", method: :patch %>
+            <p>Oh no! No more applications can be approved for this pet at this time. We're sorry for the inconvenience!</p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul><br/>
+
+    <ul class="list-group">
+      <li class="list-group-item"> Name: <%= @application.name %></li>
+      <li class="list-group-item"> Address: <%= @application.address %></li>
+      <li class="list-group-item"> City: <%= @application.city %></li>
+      <li class="list-group-item"> State: <%= @application.state %></li>
+      <li class="list-group-item"> Zip: <%= @application.zip %></li>
+      <li class="list-group-item"> Phone Number: <%= @application.phone_number %></li>
+      <li class="list-group-item"> Why would you make a good home for the pet(s)? Response: <%= @application.description %></li>
+    </ul><br/>
+  </div>
+</div>

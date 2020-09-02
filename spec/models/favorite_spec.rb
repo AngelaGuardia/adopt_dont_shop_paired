@@ -13,6 +13,6 @@ describe 'methods' do
 
   it '#pets' do
 
-    expect(@favorite.pets).to eq([@pet1, @pet2])
+    expect(@favorite.pets([@pet1.id, @pet2.id])).to eq([@pet1, @pet2])
   end
 end
