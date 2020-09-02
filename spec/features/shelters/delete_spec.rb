@@ -60,5 +60,22 @@ describe 'As a user', type: :feature do
     expect(page).not_to have_content(@pet1.name)
     expect(page).not_to have_content(@pet2.name)
   end
-  
+
+  it 'deletes reviews along with shelter' do
+    review1 = Review.create!(title: "Best Shelter!", rating: 5, content: "Very nice people and adorable pets.", shelter: @shelter)
+
+    review2 = Review.create!(title: "Best Shelter!", rating: 5, content: "Very nice people and adorable pets.", shelter: @shelter)
+
+    review3 = Review.create!(title: "Best Shelter!", rating: 5, content: "Very nice people and adorable pets.", shelter: @shelter1)
+
+    visit "/shelters/#{@shelter.id}"
+
+    expect(page).to have_content(review1.title)
+
+    click_on 'Delete Shelter'
+
+    expect(Review.all.include?(review1)).to eq(false)
+    expect(Review.all.include?(review2)).to eq(false)
+    expect(Review.all.include?(review3)).to eq(true)
+  end
 end
